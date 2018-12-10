@@ -186,7 +186,9 @@ GO
 
 /***********Object: Table HILODriver **********/
 CREATE TABLE HILODriver (
-	DriverID int IDENTITY(1,1)
+	DriverID int IDENTITY(1,1),
+	Name varchar(50)
+	PRIMARY KEY (DriverID) 
 )
 GO
 
