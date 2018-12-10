@@ -202,3 +202,70 @@ CREATE TABLE BillOfMaterial (
 	PRIMARY KEY (BillOfMaterialID)
 )
 GO 
+
+
+/********INSERT VALUES INTO TABLES *************/ 
+
+Insert INTO Inventory (Name) 
+Values ('Blade')
+GO
+
+Insert INTO SafetyStockInfo 
+Values (1, 100, 5, 12)
+GO
+
+Insert INTO QuantityStatus
+Values (1, 20, 30, 20)
+GO
+
+Insert INTO Vendor (VendorName, Contact, PhoneNumber, Rating) 
+VALUES ( 'Blade Manufacturing Co.', 'Kelly Oh', '6163451044', 'AA')
+GO  
+
+Insert INTO VendorProduct
+VALUES (1,1)
+GO
+
+Insert INTO Customer
+VALUES ()
+GO 
+
+INSERT INTO Invoice 
+VALUES ()
+GO 
+
+INSERT INTO InvoiceLineItems
+VALUES () 
+GO
+
+INSERT INTO SalesTax
+VALUES ()
+GO 
+
+INSERT INTO CreditReference 
+VALUES ()
+GO
+
+INSERT INTO PurchaseOrder
+VALUES ()
+GO
+
+INSERT INTO SerialNumber
+VALUES (1, 1,2)
+GO
+
+INSERT INTO PurchaseOrderLine
+VALUES (1,1,1)
+GO
+
+INSERT INTO JobOrders
+VALUES (1, 1, 10)
+GO 
+
+INSERT INTO HILODriver
+VALUES ('Nick') 
+GO 
+
+INSERT INTO BillOfMaterial 
+VALUES (1, 1, 1, 10)
+GO 
