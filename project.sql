@@ -43,6 +43,9 @@ IF OBJECT_ID('dbo.SalesTax') IS NOT NULL
 
 IF OBJECT_ID('dbo.CreditReference') IS NOT NULL
 	DROP TABLE dbo.CreditReference
+	
+IF OBJECT_ID('dbo.Resource') IS NOT NULL
+	DROP TABLE dbo.CreditReference
 
 IF OBJECT_ID('dbo.PurchaseOrder') IS NOT NULL
 	DROP TABLE dbo.PurchaseOrder
@@ -186,6 +189,17 @@ CREATE TABLE CreditReference (
 	FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID)
 )
 GO 
+
+/*******************Object: Table Resource ***********************/
+CREATE TABLE Resource (
+	ResourceID int IDENTITY(1,1) NOT NULL,
+	InventoryID int,
+	LoactionID int,
+	PRIMARY KEY (ResourceID),
+	FOREIGN KEY (InventoryID) REFERENCES Inventory(InventoryID)
+)
+GO
+
 
 /***********Object: Table PurchaseOrder *********************/
 CREATE TABLE PurchaseOrder ( 
