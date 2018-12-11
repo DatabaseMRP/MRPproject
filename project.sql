@@ -13,6 +13,55 @@ GO
 USE projectDB
 GO
 
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES
+			WHERE TABLE_NAME = N'Inventory')
+			DROP TABLE Inventory
+
+IF OBJECT_ID('dbo.SafetyStockInfo') IS NOT NULL
+	DROP TABLE dbo.SafetyStockInfo
+
+IF OBJECT_ID('dbo.QuantityStatus') IS NOT NULL
+	DROP TABLE dbo.QuantityStatus
+
+IF OBJECT_ID('dbo.Vendor') IS NOT NULL
+	DROP TABLE dbo.Vendor
+
+IF OBJECT_ID('dbo.VendorProduct') IS NOT NULL
+	DROP TABLE dbo.VendorProduct
+
+IF OBJECT_ID('dbo.Customer') IS NOT NULL
+	DROP TABLE dbo.Customer
+
+IF OBJECT_ID('dbo.Invoice') IS NOT NULL
+	DROP TABLE dbo.Invoice
+
+IF OBJECT_ID('dbo.InvoiceLineItems') IS NOT NULL
+	DROP TABLE dbo.InvoiceLineItems
+
+IF OBJECT_ID('dbo.SalesTax') IS NOT NULL
+	DROP TABLE dbo.SalesTax
+
+IF OBJECT_ID('dbo.CreditReference') IS NOT NULL
+	DROP TABLE dbo.CreditReference
+
+IF OBJECT_ID('dbo.PurchaseOrder') IS NOT NULL
+	DROP TABLE dbo.PurchaseOrder
+
+IF OBJECT_ID('dbo.SerialNumber') IS NOT NULL
+	DROP TABLE dbo.SerialNumber
+
+IF OBJECT_ID('dbo.PurchaseOrderLine') IS NOT NULL
+	DROP TABLE dbo.PurchaseOrderLine
+
+IF OBJECT_ID('dbo.JobOrders') IS NOT NULL
+	DROP TABLE dbo.JobOrders
+
+IF OBJECT_ID('dbo.HILODriver') IS NOT NULL
+	DROP TABLE dbo.HILODriver
+
+IF OBJECT_ID('dbo.BillOfMaterial') IS NOT NULL
+	DROP TABLE dbo.BillOfMaterial
+
 /****** Object: Table Inventory ***********/
 CREATE TABLE Inventory (
 	InventoryID int IDENTITY(1,1) NOT NULL,
