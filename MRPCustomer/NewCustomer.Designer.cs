@@ -37,10 +37,10 @@
             System.Windows.Forms.Label lblAddressBillingState;
             System.Windows.Forms.Label lblDefaultCreditCard;
             System.Windows.Forms.Label lblcreditReferecenceID;
-            this.projectDBDataSet = new MRPCustomer.projectDBDataSet();
-            this.customerBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.customerTableAdapter = new MRPCustomer.projectDBDataSetTableAdapters.CustomerTableAdapter();
-            this.tableAdapterManager = new MRPCustomer.projectDBDataSetTableAdapters.TableAdapterManager();
+            this.customerDataSet = new MRPCustomer.projectDBDataSet();
+            this._bndCustomerList = new System.Windows.Forms.BindingSource(this.components);
+            this._taCustomer = new MRPCustomer.projectDBDataSetTableAdapters.CustomerTableAdapter();
+            this._taCustomerAdapterManager = new MRPCustomer.projectDBDataSetTableAdapters.TableAdapterManager();
             this._txtCustomerId = new System.Windows.Forms.TextBox();
             this._txtName = new System.Windows.Forms.TextBox();
             this._txtAddressShipping = new System.Windows.Forms.TextBox();
@@ -48,8 +48,10 @@
             this._txtAddressBillingCity = new System.Windows.Forms.TextBox();
             this._txtAddressBillingState = new System.Windows.Forms.TextBox();
             this._txtDefaultCreditCard = new System.Windows.Forms.TextBox();
-            this._txtCreditReferecenceID = new System.Windows.Forms.TextBox();
+            this._txtCreditReferenceID = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this._bndInvoiceList = new System.Windows.Forms.BindingSource(this.components);
+            this._taInvoice = new MRPCustomer.projectDBDataSetTableAdapters.InvoiceTableAdapter();
             lblcustomerId = new System.Windows.Forms.Label();
             lblName = new System.Windows.Forms.Label();
             lblAddressShipping = new System.Windows.Forms.Label();
@@ -58,44 +60,10 @@
             lblAddressBillingState = new System.Windows.Forms.Label();
             lblDefaultCreditCard = new System.Windows.Forms.Label();
             lblcreditReferecenceID = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.projectDBDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._bndCustomerList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._bndInvoiceList)).BeginInit();
             this.SuspendLayout();
-            // 
-            // projectDBDataSet
-            // 
-            this.projectDBDataSet.DataSetName = "projectDBDataSet";
-            this.projectDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // customerBindingSource
-            // 
-            this.customerBindingSource.DataMember = "Customer";
-            this.customerBindingSource.DataSource = this.projectDBDataSet;
-            // 
-            // customerTableAdapter
-            // 
-            this.customerTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.BillOfMaterialTableAdapter = null;
-            this.tableAdapterManager.CreditReferenceTableAdapter = null;
-            this.tableAdapterManager.CustomerTableAdapter = this.customerTableAdapter;
-            this.tableAdapterManager.HILODriverTableAdapter = null;
-            this.tableAdapterManager.InventoryTableAdapter = null;
-            this.tableAdapterManager.InvoiceLineItemsTableAdapter = null;
-            this.tableAdapterManager.InvoiceTableAdapter = null;
-            this.tableAdapterManager.JobOrdersTableAdapter = null;
-            this.tableAdapterManager.PurchaseOrderLineTableAdapter = null;
-            this.tableAdapterManager.PurchaseOrderTableAdapter = null;
-            this.tableAdapterManager.QuantityStatusTableAdapter = null;
-            this.tableAdapterManager.SafetyStockInfoTableAdapter = null;
-            this.tableAdapterManager.SalesTaxTableAdapter = null;
-            this.tableAdapterManager.SerialNumberTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = MRPCustomer.projectDBDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.VendorProductTableAdapter = null;
-            this.tableAdapterManager.VendorTableAdapter = null;
             // 
             // lblcustomerId
             // 
@@ -107,15 +75,6 @@
             lblcustomerId.Text = "Customer ID:";
             lblcustomerId.Click += new System.EventHandler(this.customerIDLabel_Click);
             // 
-            // _txtCustomerId
-            // 
-            this._txtCustomerId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerBindingSource, "CustomerID", true));
-            this._txtCustomerId.Location = new System.Drawing.Point(151, 40);
-            this._txtCustomerId.Name = "_txtCustomerId";
-            this._txtCustomerId.Size = new System.Drawing.Size(100, 20);
-            this._txtCustomerId.TabIndex = 2;
-            this._txtCustomerId.TextChanged += new System.EventHandler(this.customerIDTextBox_TextChanged);
-            // 
             // lblName
             // 
             lblName.AutoSize = true;
@@ -124,14 +83,6 @@
             lblName.Size = new System.Drawing.Size(38, 13);
             lblName.TabIndex = 3;
             lblName.Text = "Name:";
-            // 
-            // _txtName
-            // 
-            this._txtName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerBindingSource, "Name", true));
-            this._txtName.Location = new System.Drawing.Point(151, 66);
-            this._txtName.Name = "_txtName";
-            this._txtName.Size = new System.Drawing.Size(100, 20);
-            this._txtName.TabIndex = 4;
             // 
             // lblAddressShipping
             // 
@@ -142,14 +93,6 @@
             lblAddressShipping.TabIndex = 5;
             lblAddressShipping.Text = "Address Shipping:";
             // 
-            // _txtAddressShipping
-            // 
-            this._txtAddressShipping.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerBindingSource, "AddressShipping", true));
-            this._txtAddressShipping.Location = new System.Drawing.Point(151, 92);
-            this._txtAddressShipping.Name = "_txtAddressShipping";
-            this._txtAddressShipping.Size = new System.Drawing.Size(100, 20);
-            this._txtAddressShipping.TabIndex = 6;
-            // 
             // lblAddressBillingStreet
             // 
             lblAddressBillingStreet.AutoSize = true;
@@ -158,14 +101,6 @@
             lblAddressBillingStreet.Size = new System.Drawing.Size(109, 13);
             lblAddressBillingStreet.TabIndex = 7;
             lblAddressBillingStreet.Text = "Address Billing Street:";
-            // 
-            // _txtAddressBillingStreet
-            // 
-            this._txtAddressBillingStreet.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerBindingSource, "AddressBillingStreet", true));
-            this._txtAddressBillingStreet.Location = new System.Drawing.Point(151, 118);
-            this._txtAddressBillingStreet.Name = "_txtAddressBillingStreet";
-            this._txtAddressBillingStreet.Size = new System.Drawing.Size(100, 20);
-            this._txtAddressBillingStreet.TabIndex = 8;
             // 
             // lblAddressBillingCity
             // 
@@ -176,14 +111,6 @@
             lblAddressBillingCity.TabIndex = 9;
             lblAddressBillingCity.Text = "Address Billing City:";
             // 
-            // _txtAddressBillingCity
-            // 
-            this._txtAddressBillingCity.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerBindingSource, "AddressBillingCity", true));
-            this._txtAddressBillingCity.Location = new System.Drawing.Point(151, 144);
-            this._txtAddressBillingCity.Name = "_txtAddressBillingCity";
-            this._txtAddressBillingCity.Size = new System.Drawing.Size(100, 20);
-            this._txtAddressBillingCity.TabIndex = 10;
-            // 
             // lblAddressBillingState
             // 
             lblAddressBillingState.AutoSize = true;
@@ -192,14 +119,6 @@
             lblAddressBillingState.Size = new System.Drawing.Size(106, 13);
             lblAddressBillingState.TabIndex = 11;
             lblAddressBillingState.Text = "Address Billing State:";
-            // 
-            // _txtAddressBillingState
-            // 
-            this._txtAddressBillingState.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerBindingSource, "AddressBillingState", true));
-            this._txtAddressBillingState.Location = new System.Drawing.Point(151, 170);
-            this._txtAddressBillingState.Name = "_txtAddressBillingState";
-            this._txtAddressBillingState.Size = new System.Drawing.Size(100, 20);
-            this._txtAddressBillingState.TabIndex = 12;
             // 
             // lblDefaultCreditCard
             // 
@@ -210,14 +129,6 @@
             lblDefaultCreditCard.TabIndex = 13;
             lblDefaultCreditCard.Text = "Default Credit Card:";
             // 
-            // _txtDefaultCreditCard
-            // 
-            this._txtDefaultCreditCard.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerBindingSource, "DefaultCreditCard", true));
-            this._txtDefaultCreditCard.Location = new System.Drawing.Point(151, 196);
-            this._txtDefaultCreditCard.Name = "_txtDefaultCreditCard";
-            this._txtDefaultCreditCard.Size = new System.Drawing.Size(100, 20);
-            this._txtDefaultCreditCard.TabIndex = 14;
-            // 
             // lblcreditReferecenceID
             // 
             lblcreditReferecenceID.AutoSize = true;
@@ -227,17 +138,110 @@
             lblcreditReferecenceID.TabIndex = 15;
             lblcreditReferecenceID.Text = "Credit Referecence ID:";
             // 
-            // _txtCreditReferecenceID
+            // customerDataSet
             // 
-            this._txtCreditReferecenceID.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerBindingSource, "CreditReferecenceID", true));
-            this._txtCreditReferecenceID.Location = new System.Drawing.Point(151, 222);
-            this._txtCreditReferecenceID.Name = "_txtCreditReferecenceID";
-            this._txtCreditReferecenceID.Size = new System.Drawing.Size(100, 20);
-            this._txtCreditReferecenceID.TabIndex = 16;
+            this.customerDataSet.DataSetName = "projectDBDataSet";
+            this.customerDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // _bndCustomerList
+            // 
+            this._bndCustomerList.DataMember = "Customer";
+            this._bndCustomerList.DataSource = this.customerDataSet;
+            // 
+            // _taCustomer
+            // 
+            this._taCustomer.ClearBeforeFill = true;
+            // 
+            // _taCustomerAdapterManager
+            // 
+            this._taCustomerAdapterManager.BackupDataSetBeforeUpdate = false;
+            this._taCustomerAdapterManager.BillOfMaterialTableAdapter = null;
+            this._taCustomerAdapterManager.CreditReferenceTableAdapter = null;
+            this._taCustomerAdapterManager.CustomerTableAdapter = this._taCustomer;
+            this._taCustomerAdapterManager.HILODriverTableAdapter = null;
+            this._taCustomerAdapterManager.InventoryTableAdapter = null;
+            this._taCustomerAdapterManager.InvoiceLineItemsTableAdapter = null;
+            this._taCustomerAdapterManager.InvoiceTableAdapter = null;
+            this._taCustomerAdapterManager.JobOrdersTableAdapter = null;
+            this._taCustomerAdapterManager.PurchaseOrderLineTableAdapter = null;
+            this._taCustomerAdapterManager.PurchaseOrderTableAdapter = null;
+            this._taCustomerAdapterManager.QuantityStatusTableAdapter = null;
+            this._taCustomerAdapterManager.SafetyStockInfoTableAdapter = null;
+            this._taCustomerAdapterManager.SalesTaxTableAdapter = null;
+            this._taCustomerAdapterManager.SerialNumberTableAdapter = null;
+            this._taCustomerAdapterManager.UpdateOrder = MRPCustomer.projectDBDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this._taCustomerAdapterManager.VendorProductTableAdapter = null;
+            this._taCustomerAdapterManager.VendorTableAdapter = null;
+            // 
+            // _txtCustomerId
+            // 
+            this._txtCustomerId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._bndCustomerList, "CustomerID", true));
+            this._txtCustomerId.Location = new System.Drawing.Point(151, 40);
+            this._txtCustomerId.Name = "_txtCustomerId";
+            this._txtCustomerId.Size = new System.Drawing.Size(100, 20);
+            this._txtCustomerId.TabIndex = 2;
+            this._txtCustomerId.TextChanged += new System.EventHandler(this.customerIDTextBox_TextChanged);
+            // 
+            // _txtName
+            // 
+            this._txtName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._bndCustomerList, "Name", true));
+            this._txtName.Location = new System.Drawing.Point(151, 66);
+            this._txtName.Name = "_txtName";
+            this._txtName.Size = new System.Drawing.Size(100, 20);
+            this._txtName.TabIndex = 4;
+            this._txtName.TextChanged += new System.EventHandler(this._txtName_TextChanged);
+            // 
+            // _txtAddressShipping
+            // 
+            this._txtAddressShipping.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._bndCustomerList, "AddressShipping", true));
+            this._txtAddressShipping.Location = new System.Drawing.Point(151, 92);
+            this._txtAddressShipping.Name = "_txtAddressShipping";
+            this._txtAddressShipping.Size = new System.Drawing.Size(100, 20);
+            this._txtAddressShipping.TabIndex = 6;
+            // 
+            // _txtAddressBillingStreet
+            // 
+            this._txtAddressBillingStreet.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._bndCustomerList, "AddressBillingStreet", true));
+            this._txtAddressBillingStreet.Location = new System.Drawing.Point(151, 118);
+            this._txtAddressBillingStreet.Name = "_txtAddressBillingStreet";
+            this._txtAddressBillingStreet.Size = new System.Drawing.Size(100, 20);
+            this._txtAddressBillingStreet.TabIndex = 8;
+            // 
+            // _txtAddressBillingCity
+            // 
+            this._txtAddressBillingCity.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._bndCustomerList, "AddressBillingCity", true));
+            this._txtAddressBillingCity.Location = new System.Drawing.Point(151, 144);
+            this._txtAddressBillingCity.Name = "_txtAddressBillingCity";
+            this._txtAddressBillingCity.Size = new System.Drawing.Size(100, 20);
+            this._txtAddressBillingCity.TabIndex = 10;
+            // 
+            // _txtAddressBillingState
+            // 
+            this._txtAddressBillingState.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._bndCustomerList, "AddressBillingState", true));
+            this._txtAddressBillingState.Location = new System.Drawing.Point(151, 170);
+            this._txtAddressBillingState.Name = "_txtAddressBillingState";
+            this._txtAddressBillingState.Size = new System.Drawing.Size(100, 20);
+            this._txtAddressBillingState.TabIndex = 12;
+            // 
+            // _txtDefaultCreditCard
+            // 
+            this._txtDefaultCreditCard.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._bndCustomerList, "DefaultCreditCard", true));
+            this._txtDefaultCreditCard.Location = new System.Drawing.Point(151, 196);
+            this._txtDefaultCreditCard.Name = "_txtDefaultCreditCard";
+            this._txtDefaultCreditCard.Size = new System.Drawing.Size(100, 20);
+            this._txtDefaultCreditCard.TabIndex = 14;
+            // 
+            // _txtCreditReferenceID
+            // 
+            this._txtCreditReferenceID.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._bndCustomerList, "CreditReferecenceID", true));
+            this._txtCreditReferenceID.Location = new System.Drawing.Point(151, 222);
+            this._txtCreditReferenceID.Name = "_txtCreditReferenceID";
+            this._txtCreditReferenceID.Size = new System.Drawing.Size(100, 20);
+            this._txtCreditReferenceID.TabIndex = 16;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(90, 271);
+            this.button1.Location = new System.Drawing.Point(46, 271);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 17;
@@ -245,11 +249,20 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Form3
+            // _bndInvoiceList
+            // 
+            this._bndInvoiceList.DataMember = "FK__Invoice__Custome__32E0915F";
+            this._bndInvoiceList.DataSource = this._bndCustomerList;
+            // 
+            // _taInvoice
+            // 
+            this._taInvoice.ClearBeforeFill = true;
+            // 
+            // NewCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(917, 450);
+            this.ClientSize = new System.Drawing.Size(1020, 450);
             this.Controls.Add(this.button1);
             this.Controls.Add(lblcustomerId);
             this.Controls.Add(this._txtCustomerId);
@@ -266,12 +279,13 @@
             this.Controls.Add(lblDefaultCreditCard);
             this.Controls.Add(this._txtDefaultCreditCard);
             this.Controls.Add(lblcreditReferecenceID);
-            this.Controls.Add(this._txtCreditReferecenceID);
-            this.Name = "Form3";
+            this.Controls.Add(this._txtCreditReferenceID);
+            this.Name = "NewCustomer";
             this.Text = "Create Customer Order";
             this.Load += new System.EventHandler(this.Form3_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.projectDBDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._bndCustomerList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._bndInvoiceList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -279,10 +293,10 @@
 
         #endregion
 
-        private projectDBDataSet projectDBDataSet;
-        private System.Windows.Forms.BindingSource customerBindingSource;
-        private projectDBDataSetTableAdapters.CustomerTableAdapter customerTableAdapter;
-        private projectDBDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private projectDBDataSet customerDataSet;
+        private System.Windows.Forms.BindingSource _bndCustomerList;
+        private projectDBDataSetTableAdapters.CustomerTableAdapter _taCustomer;
+        private projectDBDataSetTableAdapters.TableAdapterManager _taCustomerAdapterManager;
         private System.Windows.Forms.TextBox _txtCustomerId;
         private System.Windows.Forms.TextBox _txtName;
         private System.Windows.Forms.TextBox _txtAddressShipping;
@@ -290,7 +304,9 @@
         private System.Windows.Forms.TextBox _txtAddressBillingCity;
         private System.Windows.Forms.TextBox _txtAddressBillingState;
         private System.Windows.Forms.TextBox _txtDefaultCreditCard;
-        private System.Windows.Forms.TextBox _txtCreditReferecenceID;
+        private System.Windows.Forms.TextBox _txtCreditReferenceID;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.BindingSource _bndInvoiceList;
+        private projectDBDataSetTableAdapters.InvoiceTableAdapter _taInvoice;
     }
 }
