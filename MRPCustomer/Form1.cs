@@ -15,17 +15,22 @@ namespace MRPCustomer
         public Form1()
         {
             InitializeComponent();
+            
         }
 
         private void createCustomer_Click(object sender, EventArgs e)
         {
-            new Form2().Show();
+            new NewCustomer().Show();
         }
 
         private void createOrder_Click(object sender, EventArgs e)
         {
-            new Form3().Show();
+            new CustomerOrder().Show();
         }
 
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

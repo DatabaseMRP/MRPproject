@@ -86,6 +86,7 @@
             this.textBox1.Size = new System.Drawing.Size(233, 89);
             this.textBox1.TabIndex = 3;
             this.textBox1.Text = "Welcome to the MRP customer manager. Select an option to begin.";
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // Form1
             // 

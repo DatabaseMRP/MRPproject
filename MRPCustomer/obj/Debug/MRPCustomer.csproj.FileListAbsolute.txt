@@ -9,3 +9,17 @@ c:\users\lhs3\source\repos\MRPCustomer\MRPCustomer\obj\Debug\MRPCustomer.exe
 c:\users\lhs3\source\repos\MRPCustomer\MRPCustomer\obj\Debug\MRPCustomer.pdb
 c:\users\lhs3\source\repos\MRPCustomer\MRPCustomer\obj\Debug\MRPCustomer.Form2.resources
 c:\users\lhs3\source\repos\MRPCustomer\MRPCustomer\obj\Debug\MRPCustomer.Form3.resources
+C:\Users\dk43\Desktop\MRPproject\MRPCustomer\bin\Debug\Database1.mdf
+C:\Users\dk43\Desktop\MRPproject\MRPCustomer\bin\Debug\Database1_log.ldf
+C:\Users\dk43\Desktop\MRPproject\MRPCustomer\bin\Debug\MRPCustomer.exe.config
+C:\Users\dk43\Desktop\MRPproject\MRPCustomer\bin\Debug\MRPCustomer.exe
+C:\Users\dk43\Desktop\MRPproject\MRPCustomer\bin\Debug\MRPCustomer.pdb
+C:\Users\dk43\Desktop\MRPproject\MRPCustomer\obj\Debug\MRPCustomer.Form1.resources
+C:\Users\dk43\Desktop\MRPproject\MRPCustomer\obj\Debug\MRPCustomer.Properties.Resources.resources
+C:\Users\dk43\Desktop\MRPproject\MRPCustomer\obj\Debug\MRPCustomer.csproj.GenerateResource.cache
+C:\Users\dk43\Desktop\MRPproject\MRPCustomer\obj\Debug\MRPCustomer.csproj.CoreCompileInputs.cache
+C:\Users\dk43\Desktop\MRPproject\MRPCustomer\obj\Debug\MRPCustomer.exe
+C:\Users\dk43\Desktop\MRPproject\MRPCustomer\obj\Debug\MRPCustomer.pdb
+C:\Users\dk43\Desktop\MRPproject\MRPCustomer\obj\Debug\MRPCustomer.CustomerOrder.resources
+C:\Users\dk43\Desktop\MRPproject\MRPCustomer\obj\Debug\MRPCustomer.NewCustomer.resources
+C:\Users\dk43\Desktop\MRPproject\MRPCustomer\obj\Debug\MRPCustomer.csprojAssemblyReference.cache
