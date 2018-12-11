@@ -251,7 +251,9 @@ GO
 CREATE TABLE HILODriver (
 	DriverID int IDENTITY(1,1),
 	Name varchar(50),
-	PRIMARY KEY (DriverID) 
+	ResourceID int,
+	PRIMARY KEY (DriverID, ResourceID),
+	FOREIGN KEY (ResourceID) REFERENCES Resource(ResourceID)
 )
 GO
 
