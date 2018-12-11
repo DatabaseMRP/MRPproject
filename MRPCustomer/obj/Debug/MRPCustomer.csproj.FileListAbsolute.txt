@@ -1,0 +1,11 @@
+c:\users\lhs3\source\repos\MRPCustomer\MRPCustomer\bin\Debug\MRPCustomer.exe.config
+c:\users\lhs3\source\repos\MRPCustomer\MRPCustomer\bin\Debug\MRPCustomer.exe
+c:\users\lhs3\source\repos\MRPCustomer\MRPCustomer\bin\Debug\MRPCustomer.pdb
+c:\users\lhs3\source\repos\MRPCustomer\MRPCustomer\obj\Debug\MRPCustomer.Form1.resources
+c:\users\lhs3\source\repos\MRPCustomer\MRPCustomer\obj\Debug\MRPCustomer.Properties.Resources.resources
+c:\users\lhs3\source\repos\MRPCustomer\MRPCustomer\obj\Debug\MRPCustomer.csproj.GenerateResource.cache
+c:\users\lhs3\source\repos\MRPCustomer\MRPCustomer\obj\Debug\MRPCustomer.csproj.CoreCompileInputs.cache
+c:\users\lhs3\source\repos\MRPCustomer\MRPCustomer\obj\Debug\MRPCustomer.exe
+c:\users\lhs3\source\repos\MRPCustomer\MRPCustomer\obj\Debug\MRPCustomer.pdb
+c:\users\lhs3\source\repos\MRPCustomer\MRPCustomer\obj\Debug\MRPCustomer.Form2.resources
+c:\users\lhs3\source\repos\MRPCustomer\MRPCustomer\obj\Debug\MRPCustomer.Form3.resources
