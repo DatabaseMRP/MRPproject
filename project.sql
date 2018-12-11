@@ -148,7 +148,6 @@ GO
 CREATE TABLE Invoice (
 	InvoiceID int IDENTITY(1,1) NOT NULL, 
 	CustomerID int,
-	Quantity int,
 	OneShipment BIT, 
 	OrderTotalPrice DECIMAL(4,2),
 	EstimatedShippingDate date,
@@ -164,6 +163,7 @@ CREATE TABLE InvoiceLineItems (
 	InvoiceLineNO int, 
 	InvoiceLineItemAmount int,
 	ProductID int,
+	Quantity int,
 	PRIMARY KEY (InvoiceID, InvoiceLineNO),
 	FOREIGN KEY (InvoiceID) REFERENCES Invoice(InvoiceID)
 )

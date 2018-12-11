@@ -72,10 +72,10 @@ namespace MRPCustomer
             conn.Open();
             Console.WriteLine("connected?");
             MessageBox.Show("Connection Open  !");
-            
+
 
             string sql = "INSERT INTO CUSTOMER VALUES(@name, @addressShipping, @addressBillingStreet, @addressBillingCity," +
-                "@addressBillingState, @addressDefaultCreditCard, @addressCreditReference" +
+                "@addressBillingState, @addressDefaultCreditCard, @addressCreditReference";
 
                 /*
                 "" + _txtName.Text + ","

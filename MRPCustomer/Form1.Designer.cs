@@ -40,16 +40,16 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.createCustomer, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.createOrder, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.createCustomer, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.createOrder, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.textBox1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.66445F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33555F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(239, 190);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -60,7 +60,7 @@
             this.createCustomer.Name = "createCustomer";
             this.createCustomer.Size = new System.Drawing.Size(113, 58);
             this.createCustomer.TabIndex = 1;
-            this.createCustomer.Text = "Create/Find Customer Account";
+            this.createCustomer.Text = "Create Customer Account";
             this.createCustomer.UseVisualStyleBackColor = true;
             this.createCustomer.Click += new System.EventHandler(this.createCustomer_Click);
             // 
@@ -71,7 +71,7 @@
             this.createOrder.Name = "createOrder";
             this.createOrder.Size = new System.Drawing.Size(114, 58);
             this.createOrder.TabIndex = 2;
-            this.createOrder.Text = "Create Customer Order";
+            this.createOrder.Text = "Create Customer Order/Find Customer";
             this.createOrder.UseVisualStyleBackColor = true;
             this.createOrder.Click += new System.EventHandler(this.createOrder_Click);
             // 
@@ -83,7 +83,7 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(233, 89);
+            this.textBox1.Size = new System.Drawing.Size(233, 120);
             this.textBox1.TabIndex = 3;
             this.textBox1.Text = "Welcome to the MRP customer manager. Select an option to begin.";
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
