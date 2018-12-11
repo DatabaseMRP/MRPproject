@@ -131,10 +131,10 @@ GO
 CREATE TABLE Customer ( 
 	CustomerID int IDENTITY(1,1) NOT NULL,
 	Name varchar(50), 
-	AddressBilling varchar(100), 
-	AddressShippingStreet varchar(100),
-	AddressShippingCity varchar(50), 
-	AddressShippingState varchar(2), 
+	AddressShipping varchar(100), 
+	AddressBillingStreet varchar(100),
+	AddressBillingCity varchar(50), 
+	AddressBillingState varchar(2), 
 	DefaultCreditCard varchar(19), 
 	CreditReferecenceID int,
 	PRIMARY KEY (CustomerID)
@@ -255,8 +255,16 @@ GO
 
 /********INSERT VALUES INTO TABLES *************/ 
 
-Insert INTO Inventory (Name) 
-Values ('Blade')
+Insert INTO Inventory (Name, Description, FactoryCost, BestPrice) 
+Values ('Long-sleeve Logo Jersey, S','Unisex long-sleeve AWC logo microfiber cycling jersey', 38.49, 49.99 ),
+('Long-sleeve Logo Jersey, M', 'Unisex long-sleeve AWC logo microfiber cycling jersey', 38.49, 49.99),
+( 'Long-sleeve Logo Jersey, L', 'Unisex long-sleeve AWC logo microfiber cycling jersey', 38.49, 49.99),
+( 'Women Tights, S', 'Warm spandex tights for winter riding; seamless chamois construction eliminates pressure points.', 24.74, 30.00),
+( 'Women Tights, M', 'Warm spandex tights for winter riding; seamless chamois construction eliminates pressure points.',24.74, 30.00),
+( 'Women Tights, L', 'Warm spandex tights for winter riding; seamless chamois construction eliminates pressure points.' ,24.74, 30.00),
+( 'Racing Socks, M', '', 3.36, 8.99),
+( 'Racing Socks, L', '', 3.36, 8.99)
+
 GO
 
 Insert INTO SafetyStockInfo 
@@ -270,15 +278,18 @@ GO
 Insert INTO Vendor (VendorName, Contact, PhoneNumber, Rating) 
 VALUES ( 'Blade Manufacturing Co.', 'Kelly Oh', '6163451044', 'AA')
 GO  
-
+/*
 Insert INTO VendorProduct
 VALUES (1,1)
 GO
+*/
 
 Insert INTO Customer
-VALUES ()
+VALUES ( 'Kelly', '3435 Burton ST, Grand Rapids, MI','3435 Bursont ST', 'Grand Rapids', 'MI', '33332664695310', 1) ,
+('Luke', '4675 Tully Street, Detroit, MI', '4675 Tully Street', 'Detroit' , 'MI', '55553635401028', 2 ), 
+('Judy', '1055 George Avenue, Mobile, AL','1055 George Avenue', 'Mobile', 'AL', '33332150058339', 3 ) 
 GO 
-
+/*
 INSERT INTO Invoice 
 VALUES ()
 GO 
@@ -286,15 +297,21 @@ GO
 INSERT INTO InvoiceLineItems
 VALUES () 
 GO
+*/
 
 INSERT INTO SalesTax
-VALUES ()
+VALUES ('AL', 4.00), ('AK', 0.00), ('AZ', 5.60),
+('MI', 6.00)
 GO 
 
-INSERT INTO CreditReference 
-VALUES ()
-GO
 
+INSERT INTO CreditReference (CustomerID, CurrentBalance, CreditLimit)
+VALUES (1,  100.00, 500.00),
+(2, 300.00, 250.00), 
+(3, 300.00, 700.00)
+
+GO
+/*
 INSERT INTO PurchaseOrder
 VALUES ()
 GO
@@ -317,4 +334,4 @@ GO
 
 INSERT INTO BillOfMaterial 
 VALUES (1, 1, 1, 10)
-GO 
+GO */
