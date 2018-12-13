@@ -300,16 +300,16 @@ VALUES (1,1)
 GO
 */
 
-Insert INTO Customer
-VALUES ( 'Kelly', '3435 Burton ST, Grand Rapids, MI','3435 Bursont ST', 'Grand Rapids', 'MI', '33332664695310', 1) ,
-('Luke', '4675 Tully Street, Detroit, MI', '4675 Tully Street', 'Detroit' , 'MI', '55553635401028', 2 ), 
-('Judy', '1055 George Avenue, Mobile, AL','1055 George Avenue', 'Mobile', 'AL', '33332150058339', 3 ) 
+Insert into Customer(Name, AddressShippingStreet, AddressShippingCity, AddressShippingState,  AddressBillingStreet, 
+AddressBillingCity, AddressBillingState, DefaultCreditCard, CreditReferecenceID )
+VALUES ( 'Kelly', '3435 Burton ST', 'Grand Rapids', 'MI','3435 Bursont ST', 'Grand Rapids', 'MI', '33332664695310', 1) ,
+('Luke', '4675 Tully Street', 'Detroit', 'MI', '4675 Tully Street', 'Detroit' , 'MI', '55553635401028', 2 ), 
+('Judy', '1055 George Avenue', 'Mobile', 'AL','1055 George Avenue', 'Mobile', 'AL', '33332150058339', 3 ) 
 GO 
 /*
 INSERT INTO Invoice 
 VALUES ()
 GO 
-
 INSERT INTO InvoiceLineItems
 VALUES () 
 GO
@@ -325,29 +325,3 @@ INSERT INTO CreditReference (CustomerID, CurrentBalance, CreditLimit)
 VALUES (1,  100.00, 500.00),
 (2, 300.00, 250.00), 
 (3, 300.00, 700.00)
-
-GO
-/*
-INSERT INTO PurchaseOrder
-VALUES ()
-GO
-
-INSERT INTO SerialNumber
-VALUES (1, 1,2)
-GO
-
-INSERT INTO PurchaseOrderLine
-VALUES (1,1,1)
-GO
-
-INSERT INTO JobOrders
-VALUES (1, 1, 10)
-GO 
-
-INSERT INTO HILODriver
-VALUES ('Nick') 
-GO 
-
-INSERT INTO BillOfMaterial 
-VALUES (1, 1, 1, 10)
-GO */
