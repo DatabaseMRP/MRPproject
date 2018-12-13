@@ -85,7 +85,7 @@ namespace MRPCustomer
 
             try
             {
-                SqlDataReader reader = procedure.ExecuteReader();
+                SqlDataReader procedureReader = procedure.ExecuteReader();
                 //MessageBox.Show("Saved");
             }
             catch (Exception exc)
@@ -96,8 +96,10 @@ namespace MRPCustomer
             //5
             procedure.Dispose();
             conn.Close();
+            MessageBox.Show("Your Order has been placed.");
 
-            orderResult.Text = "Your Order has been placed.";
+           
+            conn.Close();
         }
 
         private void productButton_Click(object sender, EventArgs e)
