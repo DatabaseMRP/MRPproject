@@ -4,7 +4,7 @@ IF OBJECT_ID('NewCustomer', 'P') IS NOT NULL
 DROP PROCEDURE NewCustomer; 
 GO 
 
-create procedure NewCustomer
+CREATE PROCEDURE NewCustomer
 	@name varchar(50), 
 	@addressShippingStreet varchar(100), 
 	@addressShippingCity varchar(50),
@@ -14,9 +14,9 @@ create procedure NewCustomer
 	@addressBillingState varchar(2), 
 	@defaultCreditCard varchar(19), 
 	@creditReferecenceID int
-as
-begin
-Insert into Customer(Name, AddressShippingStreet, AddressShippingCity, AddressShippingState,  AddressBillingStreet, 
+AS
+BEGIN
+INSERT INTO Customer(Name, AddressShippingStreet, AddressShippingCity, AddressShippingState,  AddressBillingStreet, 
 AddressBillingCity, AddressBillingState, DefaultCreditCard, CreditReferecenceID )
 Values (@name, @addressShippingStreet,
 @addressShippingCity,
@@ -26,11 +26,11 @@ Values (@name, @addressShippingStreet,
 @addressBillingState, 
 @defaultCreditCard,
 @creditReferecenceID)
-end
+END
 
-go
+GO
 
-select * from customer;
+SELECT * FROM customer;
 
 
 --testing exec
@@ -44,7 +44,7 @@ EXEC dbo.NewCustomer
 @addressBillingState ='df',
 @defaultCreditCard = 213452,
 @creditReferecenceID =3
-go
+GO
 
 
 
@@ -54,27 +54,63 @@ IF OBJECT_ID('NewOrder', 'P') IS NOT NULL
 DROP PROCEDURE NewOrder; 
 GO 
 
-create procedure NewOrder
+CREATE PROCEDURE NewOrder
 	@customerID int,	
 	@oneShipment BIT, 
-	@orderTotalPrice DECIMAL(4,2)
-as
-begin
+	@orderTotalPrice DECIMAL(4,2),
+	@products varchar(10),
+	@quantities varchar(10)
+AS
+BEGIN
 
-declare @currentDate varchar(10)
-declare @shippingdate varchar(10)
-set @currentDate = ( SELECT CONVERT (date, SYSDATETIME()) )
-set @shippingdate = ( SELECT DATEADD(day, 5, (SELECT CONVERT (date, SYSDATETIME()))))
+DECLARE @currentDate varchar(10)
+DECLARE @shippingdate varchar(10)
+DECLARE @productArray table(product int) 
+DECLARE @quantityArray table (quantity int)
+SET @currentDate = ( SELECT CONVERT (date, SYSDATETIME()) )
+SET @shippingdate = ( SELECT DATEADD(day, 5, (SELECT CONVERT (date, SYSDATETIME()))))
 
 Insert into Invoice( CustomerID, OneShipment, OrderTotalPrice, EstimatedShippingDate, InvoiceDateTime)
 Values (@customerID, @oneShipment, @orderTotalPrice, @shippingdate, @currentDate)
 
-end
-go
+INSERT INTO @productArray
+SELECT CAST(value AS int) FROM STRING_SPLIT(@products, ',');
 
-select * from Invoice;
+INSERT INTO @quantityArray
+SELECT CAST (value AS int) FROM STRING_SPLIT(@quantities, ',');
+
+DECLARE @count int = 1;
+
+DECLARE @length int;
+SELECT @length = COUNT(*) FROM @productArray
+
+DECLARE @invoice int;
+SELECT @invoice = InvoiceID FROM Invoice WHERE CustomerID = @customerID
+WHILE @count <= @length
+BEGIN
+	DECLARE @product int;
+	DECLARE @quantity int;
+
+	SELECT TOP 1 @product = product FROM @productArray;
+	SELECT TOP 1 @quantity = quantity FROM @quantityArray;
+
+	INSERT INTO InvoiceLineItems (InvoiceID, InvoiceLineNO, InvoiceLineItemAmount, ProductID, Quantity)
+	SELECT @invoice, @count, BestPrice, @product, @quantity FROM Inventory WHERE InventoryID = @product;
+
+	DELETE FROM @productArray WHERE product = @product;
+	DELETE FROM @quantityArray WHERE quantity = @quantity;
+
+	SET @count = @count + 1;
+END
+
+END
+GO
+
+--select * from Invoice;
 
 --testing exec
-EXEC dbo.NewOrder
-@customerID = '1', @oneShipment ='', @orderTotalPrice ='12.56'
-go
+--EXEC dbo.NewOrder
+--@customerID = 1, @oneShipment = 0, @orderTotalPrice = 12.56, @products = '1,2,3', @quantities = '2,1,5'
+--GO
+--SELECT * FROM Invoice;
+--SELECT * FROM InvoiceLineItems;
