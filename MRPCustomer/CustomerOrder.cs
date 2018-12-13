@@ -26,14 +26,34 @@ namespace MRPCustomer
         private void orderButton_Click(object sender, EventArgs e)
         {
             String connString = "Data Source=localhost;" +
-           "Initial Catalog=projectDB;Integrated Security=true ";
+         "Initial Catalog=projectDB;Integrated Security=true ";
 
             SqlConnection conn = new SqlConnection(connString);
             conn.Open();
-            //MessageBox.Show("Connection Open  !");
 
-            string query = "EXEC ";
+            SqlCommand insertCmd = new SqlCommand("NewOrder", conn);
+            insertCmd.CommandType = CommandType.StoredProcedure;
 
+
+            //pass values to @parameters in variable sql
+            insertCmd.Parameters.Add(new SqlParameter("customerID", this.customerNameBox.Text));
+            insertCmd.Parameters.Add(new SqlParameter("oneShipment", this.productNameBox.Text));
+            insertCmd.Parameters.Add(new SqlParameter("orderTotalPrice", this.customerIDBox.Text));
+            insertCmd.Parameters.Add(new SqlParameter("addressShippingState", this.ProductIDsBox.Text));
+            insertCmd.Parameters.Add(new SqlParameter("addressBillingStreet", this.quantityBox.Text));
+
+            try
+            {
+                SqlDataReader reader = insertCmd.ExecuteReader();
+                MessageBox.Show("Saved");
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+
+            //5
+            insertCmd.Dispose();
             conn.Close();
 
             orderResult.Text = "Your Order has been placed.";

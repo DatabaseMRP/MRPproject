@@ -77,21 +77,17 @@ namespace MRPCustomer
 
             SqlConnection conn = new SqlConnection(connString);
             conn.Open();
-            MessageBox.Show("Connection Open  !");
 
-            string sql = "INSERT INTO CUSTOMER VALUES("
-            + "@name, @addressShipping, @addressBillingStreet, @addressBillingCity," +
-                "@addressBillingState, @addressDefaultCreditCard, @addressCreditReference);";
-          
-            Console.WriteLine("sql query:", sql);
-            MessageBox.Show("sql query would be " + sql);
+            SqlCommand insertCmd = new SqlCommand("NewCustomer", conn);
+            insertCmd.CommandType = CommandType.StoredProcedure;
 
-            SqlCommand insertCmd = new SqlCommand(sql, conn);
-            SqlDataReader reader;
 
             //pass values to @parameters in variable sql
             insertCmd.Parameters.Add(new SqlParameter("name", this._txtName.Text));
-            insertCmd.Parameters.Add(new SqlParameter("addressShipping", this._txtAddressShipping.Text));
+            insertCmd.Parameters.Add(new SqlParameter("addressShippingStreet", this._txtAddressShippingStreet.Text));
+            insertCmd.Parameters.Add(new SqlParameter("addressShippingCity", this._txtAddressShippingCity.Text));
+            insertCmd.Parameters.Add(new SqlParameter("addressShippingState", this._txtAddressShippingState.Text));
+
             insertCmd.Parameters.Add(new SqlParameter("addressBillingStreet", this._txtAddressBillingStreet.Text));
             insertCmd.Parameters.Add(new SqlParameter("addressBillingCity", this._txtAddressBillingCity.Text));
             insertCmd.Parameters.Add(new SqlParameter("addressBillingState", this._txtAddressBillingState.Text));
@@ -101,7 +97,7 @@ namespace MRPCustomer
 
             try
             {
-                reader = insertCmd.ExecuteReader();
+                SqlDataReader reader = insertCmd.ExecuteReader();
                 MessageBox.Show("Saved");
             } catch (Exception exc) {
                 MessageBox.Show(exc.Message);
