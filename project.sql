@@ -301,9 +301,9 @@ GO
 */
 
 Insert INTO Customer
-VALUES ( 'Kelly', '3435 Burton ST, Grand Rapids, MI','3435 Bursont ST', 'Grand Rapids', 'MI', '33332664695310', 1) ,
-('Luke', '4675 Tully Street, Detroit, MI', '4675 Tully Street', 'Detroit' , 'MI', '55553635401028', 2 ), 
-('Judy', '1055 George Avenue, Mobile, AL','1055 George Avenue', 'Mobile', 'AL', '33332150058339', 3 ) 
+VALUES ( 'Kelly', '3435 Burton ST', 'Grand Rapids', 'MI','3435 Bursont ST', 'Grand Rapids', 'MI', '33332664695310', 1) ,
+('Luke', '4675 Tully Street', 'Detroit', 'MI', '4675 Tully Street', 'Detroit' , 'MI', '55553635401028', 2 ), 
+('Judy', '1055 George Avenue', 'Mobile', 'AL','1055 George Avenue', 'Mobile', 'AL', '33332150058339', 3 ) 
 GO 
 /*
 INSERT INTO Invoice 
