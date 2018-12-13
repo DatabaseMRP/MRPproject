@@ -9,7 +9,7 @@ GO
 
 CREATE DATABASE projectDB
 GO
-
+W
 USE projectDB
 GO
 
@@ -45,7 +45,7 @@ IF OBJECT_ID('dbo.CreditReference') IS NOT NULL
 	DROP TABLE dbo.CreditReference
 	
 IF OBJECT_ID('dbo.Resource') IS NOT NULL
-	DROP TABLE dbo.CreditReference
+	DROP TABLE dbo.Resource
 
 IF OBJECT_ID('dbo.PurchaseOrder') IS NOT NULL
 	DROP TABLE dbo.PurchaseOrder
