@@ -1,20 +1,4 @@
-Skip to content
- 
-Search or jump to…
 
-Pull requests
-Issues
-Marketplace
-Explore
- @kellysoh Sign out
-0
-1 1 DatabaseMRP/MRPproject
- Code  Issues 0  Pull requests 1  Projects 0  Wiki  Insights  Settings
-MRPproject/project.sql
-bb3ca93  just now
-@kellysoh kellysoh Update project.sql
-     
-328 lines (276 sloc)  8.41 KB
 USE master
 go
 
