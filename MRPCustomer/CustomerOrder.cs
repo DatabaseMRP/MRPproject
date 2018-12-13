@@ -31,21 +31,62 @@ namespace MRPCustomer
             SqlConnection conn = new SqlConnection(connString);
             conn.Open();
 
-            SqlCommand insertCmd = new SqlCommand("NewOrder", conn);
-            insertCmd.CommandType = CommandType.StoredProcedure;
+            string bit;
+            if (checkBox1.Checked)
+            {
+                bit = "true";
+            }
+            else
+            {
+                bit = "false";
+            }
 
+            string stringProducts = ProductIDsBox.Text;
+            string[] stringArray = stringProducts.Split(',');
+            string stringQuantity = quantityBox.Text;
+            string[] quantityStrings = stringQuantity.Split(',');
+            int[] intQuantities = new int[quantityStrings.Length];
+            for (int i = 0; i < quantityStrings.Length; i++)
+            {
+                Int32.TryParse(quantityStrings[i], out intQuantities[i]);
+            }
 
-            //pass values to @parameters in variable sql
-            insertCmd.Parameters.Add(new SqlParameter("customerID", this.customerNameBox.Text));
-            insertCmd.Parameters.Add(new SqlParameter("oneShipment", this.productNameBox.Text));
-            insertCmd.Parameters.Add(new SqlParameter("orderTotalPrice", this.customerIDBox.Text));
-            insertCmd.Parameters.Add(new SqlParameter("addressShippingState", this.ProductIDsBox.Text));
-            insertCmd.Parameters.Add(new SqlParameter("addressBillingStreet", this.quantityBox.Text));
+            decimal TotalPrice = 0;
+            for (int i = 0; i < stringArray.Length; i++)
+            {
+                try
+                {
+                    conn.Open();
+                }
+                catch (Exception exc) { }
+                string price = "SELECT BestPrice FROM Inventory WHERE InventoryID = " + stringArray[i];
+                SqlCommand insertCmd = new SqlCommand(price, conn);
+                SqlDataReader reader = insertCmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    TotalPrice = TotalPrice + intQuantities[i] * Convert.ToInt32(reader["BestPrice"]);
+                }
+                conn.Close();
+            }
+            string cost = Convert.ToString(TotalPrice);
+
+            conn.Open();
+
+            //string query = "EXEC dbo.NewOrder " + customerIDBox.Text + ", " + bit + ", " + cost + ", '" + stringProducts + "', '" + stringQuantity + "'";
+
+            SqlCommand procedure = new SqlCommand("NewOrder", conn);
+            procedure.CommandType = CommandType.StoredProcedure;
+
+            procedure.Parameters.Add(new SqlParameter("customerID", Convert.ToInt32(customerIDBox.Text)));
+            procedure.Parameters.Add(new SqlParameter("oneShipment", bool.Parse(bit)));
+            procedure.Parameters.Add(new SqlParameter("orderTotalPrice", Convert.ToInt32(cost)));
+            procedure.Parameters.Add(new SqlParameter("products", stringProducts));
+            procedure.Parameters.Add(new SqlParameter("quantities", stringQuantity));
 
             try
             {
-                SqlDataReader reader = insertCmd.ExecuteReader();
-                MessageBox.Show("Saved");
+                SqlDataReader reader = procedure.ExecuteReader();
+                //MessageBox.Show("Saved");
             }
             catch (Exception exc)
             {
@@ -53,7 +94,7 @@ namespace MRPCustomer
             }
 
             //5
-            insertCmd.Dispose();
+            procedure.Dispose();
             conn.Close();
 
             orderResult.Text = "Your Order has been placed.";
