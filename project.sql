@@ -134,7 +134,9 @@ GO
 CREATE TABLE Customer ( 
 	CustomerID int IDENTITY(1,1) NOT NULL,
 	Name varchar(50), 
-	AddressShipping varchar(100), 
+	AddressShippingStreet varchar(100), 
+	AddressShippingCity varchar(50),
+	AddressShippingState varchar(2),
 	AddressBillingStreet varchar(100),
 	AddressBillingCity varchar(50), 
 	AddressBillingState varchar(2), 

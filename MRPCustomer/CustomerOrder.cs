@@ -22,5 +22,30 @@ namespace MRPCustomer
         {
 
         }
+
+        private void orderButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void productButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void priceButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void customerButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -41,9 +41,9 @@ namespace MRPCustomer
         private void Form3_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'projectDBDataSet.Invoice' table. You can move, or remove it, as needed.
-            this._taInvoice.Fill(this.customerDataSet.Invoice);
+            //this._taInvoice.Fill(this.customerDataSet.Invoice);
             // TODO: This line of code loads data into the 'projectDBDataSet.Customer' table. You can move, or remove it, as needed.
-            this._taCustomer.Fill(this.customerDataSet.Customer);
+           // this._taCustomer.Fill(this.customerDataSet.Customer);
 
         }
         /// <summary>
@@ -77,49 +77,35 @@ namespace MRPCustomer
 
             SqlConnection conn = new SqlConnection(connString);
             conn.Open();
-            Console.WriteLine("connected?");
             MessageBox.Show("Connection Open  !");
 
-
             string sql = "INSERT INTO CUSTOMER VALUES("
-                + _txtName.Text + ", " + _txtAddressShipping.Text + ", " + _txtAddressBillingStreet.Text + ", "
-                + _txtAddressBillingCity.Text + ", " + _txtAddressBillingState.Text + ", "
-                + _txtDefaultCreditCard.Text + ", " + _txtCreditReferenceID.Text + ");";
-
-            MessageBox.Show(_txtName.Text + ", " + _txtAddressShipping.Text + ", " + _txtAddressBillingStreet.Text + ", "
-                + _txtAddressBillingCity.Text + ", " + _txtAddressBillingState.Text + ", "
-                + _txtDefaultCreditCard.Text + ", " + _txtCreditReferenceID.Text);
-
-            /*        
-            @name, @addressShipping, @addressBillingStreet, @addressBillingCity," +
+            + "@name, @addressShipping, @addressBillingStreet, @addressBillingCity," +
                 "@addressBillingState, @addressDefaultCreditCard, @addressCreditReference);";
-                */
-            /*
-            string sql = "Insert INTO Customer " +
-                "VALUES('Super Mario', '6000 Burton ST, Traverse City, MI', '3435 claystone ST'," +
-                " 'Grand Rapids', 'MI', '33332664695310', 1);";
-                */
+          
+            Console.WriteLine("sql query:", sql);
+            MessageBox.Show("sql query would be " + sql);
+
             SqlCommand insertCmd = new SqlCommand(sql, conn);
+            SqlDataReader reader;
 
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            adapter.InsertCommand = new SqlCommand(sql, conn);
-            adapter.InsertCommand.ExecuteNonQuery();
+            //pass values to @parameters in variable sql
+            insertCmd.Parameters.Add(new SqlParameter("name", this._txtName.Text));
+            insertCmd.Parameters.Add(new SqlParameter("addressShipping", this._txtAddressShipping.Text));
+            insertCmd.Parameters.Add(new SqlParameter("addressBillingStreet", this._txtAddressBillingStreet.Text));
+            insertCmd.Parameters.Add(new SqlParameter("addressBillingCity", this._txtAddressBillingCity.Text));
+            insertCmd.Parameters.Add(new SqlParameter("addressBillingState", this._txtAddressBillingState.Text));
+            insertCmd.Parameters.Add(new SqlParameter("addressDefaultCreditCard", this._txtDefaultCreditCard.Text));
+            insertCmd.Parameters.Add(new SqlParameter("addressCreditReference", this._txtCreditReferenceID.Text));
 
 
-            /*
-            "" + _txtName.Text + ","
-        + _txtAddressShipping.Text + "," + _txtAddressBillingStreet.Text + ","
-        + _txtAddressBillingCity.Text + "," + _txtAddressBillingState.Text
-        + _txtDefaultCreditCard.Text + "," + _txtCreditReferenceID.Text + ")";
-        
-            insertCmd.Parameters.Add("@name", SqlDbType.VarChar, 50, "Name");
-            insertCmd.Parameters.Add("@addressShipping", SqlDbType.VarChar, 100, "name");
-            insertCmd.Parameters.Add("@addressBillingStreet", SqlDbType.VarChar, 100, "name");
-            insertCmd.Parameters.Add("@addressBillingCity", SqlDbType.VarChar, 50, "name");
-            insertCmd.Parameters.Add("@addressBillingState", SqlDbType.VarChar, 2, "name");
-            insertCmd.Parameters.Add("@addressDefaultCreditCard", SqlDbType.VarChar, 19, "name");
-            insertCmd.Parameters.Add("@addressCreditReference", SqlDbType.Int, 50, "name");
-            */
+            try
+            {
+                reader = insertCmd.ExecuteReader();
+                MessageBox.Show("Saved");
+            } catch (Exception exc) {
+                MessageBox.Show(exc.Message);
+            }
 
             //5
             insertCmd.Dispose();
