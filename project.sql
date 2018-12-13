@@ -1,3 +1,4 @@
+
 USE master
 go
 
@@ -301,10 +302,10 @@ GO
 */
 
 Insert into Customer(Name, AccountName, AddressShippingStreet, AddressShippingCity, AddressShippingState,  AddressBillingStreet, 
-AddressBillingCity, AddressBillingState, DefaultCreditCard )
+AddressBillingCity, AddressBillingState, DefaultCreditCard)
 VALUES ( 'Kelly', 'A123456789', '3435 Burton ST', 'Grand Rapids', 'MI','3435 Bursont ST', 'Grand Rapids', 'MI', '33332664695310') ,
-('Luke', 'B123456789','4675 Tully Street', 'Detroit', 'MI', '4675 Tully Street', 'Detroit' , 'MI', '55553635401028'), 
-('Judy', 'C123456789', '1055 George Avenue', 'Mobile', 'AL','1055 George Avenue', 'Mobile', 'AL', '33332150058339' ) 
+('Luke', 'B123456789','4675 Tully Street', 'Detroit', 'MI', '4675 Tully Street', 'Detroit' , 'MI', '55553635401028' ), 
+('Judy', 'C123456789', '1055 George Avenue', 'Mobile', 'AL','1055 George Avenue', 'Mobile', 'AL', '33332150058339') 
 GO 
 /*
 INSERT INTO Invoice 
@@ -325,3 +326,16 @@ INSERT INTO CreditReference (CustomerID, CurrentBalance, CreditLimit)
 VALUES (1,  100.00, 500.00),
 (2, 300.00, 250.00), 
 (3, 300.00, 700.00)
+GO
+/***************************** INDEX quantityStatus, vendor, invoice, and purchase order TABLE *****************************/
+CREATE INDEX Inventory_Index 
+ON Inventory ( BestPrice);
+
+CREATE INDEX Quantity_Index
+ON QuantityStatus(OnHand, OnOrder, Committed);
+
+CREATE INDEX Invoice_Index
+ON Invoice(CustomerID, InvoiceDateTime) ;
+
+CREATE INDEX PurchaseOrder_Index
+ON PurchaseOrder(PurchaseOrderLineID, VendorID);
