@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Label lblcustomerId;
             System.Windows.Forms.Label lblName;
             System.Windows.Forms.Label lblAddressShipping;
             System.Windows.Forms.Label lblAddressBillingStreet;
@@ -41,7 +40,6 @@
             this._bndCustomerList = new System.Windows.Forms.BindingSource(this.components);
             this._taCustomer = new MRPCustomer.projectDBDataSetTableAdapters.CustomerTableAdapter();
             this._taCustomerAdapterManager = new MRPCustomer.projectDBDataSetTableAdapters.TableAdapterManager();
-            this._txtCustomerId = new System.Windows.Forms.TextBox();
             this._txtName = new System.Windows.Forms.TextBox();
             this._txtAddressShipping = new System.Windows.Forms.TextBox();
             this._txtAddressBillingStreet = new System.Windows.Forms.TextBox();
@@ -52,7 +50,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this._bndInvoiceList = new System.Windows.Forms.BindingSource(this.components);
             this._taInvoice = new MRPCustomer.projectDBDataSetTableAdapters.InvoiceTableAdapter();
-            lblcustomerId = new System.Windows.Forms.Label();
             lblName = new System.Windows.Forms.Label();
             lblAddressShipping = new System.Windows.Forms.Label();
             lblAddressBillingStreet = new System.Windows.Forms.Label();
@@ -64,16 +61,6 @@
             ((System.ComponentModel.ISupportInitialize)(this._bndCustomerList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._bndInvoiceList)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lblcustomerId
-            // 
-            lblcustomerId.AutoSize = true;
-            lblcustomerId.Location = new System.Drawing.Point(29, 43);
-            lblcustomerId.Name = "lblcustomerId";
-            lblcustomerId.Size = new System.Drawing.Size(68, 13);
-            lblcustomerId.TabIndex = 1;
-            lblcustomerId.Text = "Customer ID:";
-            lblcustomerId.Click += new System.EventHandler(this.customerIDLabel_Click);
             // 
             // lblName
             // 
@@ -173,15 +160,6 @@
             this._taCustomerAdapterManager.VendorProductTableAdapter = null;
             this._taCustomerAdapterManager.VendorTableAdapter = null;
             // 
-            // _txtCustomerId
-            // 
-            this._txtCustomerId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._bndCustomerList, "CustomerID", true));
-            this._txtCustomerId.Location = new System.Drawing.Point(151, 40);
-            this._txtCustomerId.Name = "_txtCustomerId";
-            this._txtCustomerId.Size = new System.Drawing.Size(100, 20);
-            this._txtCustomerId.TabIndex = 2;
-            this._txtCustomerId.TextChanged += new System.EventHandler(this.customerIDTextBox_TextChanged);
-            // 
             // _txtName
             // 
             this._txtName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._bndCustomerList, "Name", true));
@@ -264,8 +242,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1020, 450);
             this.Controls.Add(this.button1);
-            this.Controls.Add(lblcustomerId);
-            this.Controls.Add(this._txtCustomerId);
             this.Controls.Add(lblName);
             this.Controls.Add(this._txtName);
             this.Controls.Add(lblAddressShipping);
@@ -297,7 +273,6 @@
         private System.Windows.Forms.BindingSource _bndCustomerList;
         private projectDBDataSetTableAdapters.CustomerTableAdapter _taCustomer;
         private projectDBDataSetTableAdapters.TableAdapterManager _taCustomerAdapterManager;
-        private System.Windows.Forms.TextBox _txtCustomerId;
         private System.Windows.Forms.TextBox _txtName;
         private System.Windows.Forms.TextBox _txtAddressShipping;
         private System.Windows.Forms.TextBox _txtAddressBillingStreet;
