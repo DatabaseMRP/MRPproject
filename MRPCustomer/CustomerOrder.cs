@@ -30,9 +30,13 @@ namespace MRPCustomer
 
             SqlConnection conn = new SqlConnection(connString);
             conn.Open();
-            MessageBox.Show("Connection Open  !");
+            //MessageBox.Show("Connection Open  !");
 
+            string query = "EXEC ";
 
+            conn.Close();
+
+            orderResult.Text = "Your Order has been placed.";
         }
 
         private void productButton_Click(object sender, EventArgs e)
@@ -42,22 +46,28 @@ namespace MRPCustomer
 
             SqlConnection conn = new SqlConnection(connString);
             conn.Open();
-            MessageBox.Show("Connection Open  !");
+            //MessageBox.Show("Connection Open  !");
 
-            string query = "SELECT * FROM projectDB.Inventory WHERE Name = " + productNameBox.Text;
+            string query = "SELECT * FROM Inventory WHERE Name = '" + productNameBox.Text + "'";
 
             SqlCommand insertCmd = new SqlCommand(query, conn);
-            SqlDataReader reader;
-
+            SqlDataReader reader = insertCmd.ExecuteReader();
+            string resultString = "";
             try
             {
-                reader = insertCmd.ExecuteReader();
-                MessageBox.Show("Saved");
+                if (reader.Read())
+                {
+                    resultString = Convert.ToString(reader["InventoryID"]);
+                    resultString = resultString + ", " + reader["Name"];
+                    resultString = resultString + ", " + Convert.ToString(reader["Description"]);
+                }
             }
             catch (Exception exc)
             {
                 MessageBox.Show(exc.Message);
             }
+
+            productsResult.Text = resultString;
 
             //5
             insertCmd.Dispose();
@@ -81,8 +91,50 @@ namespace MRPCustomer
 
             SqlConnection conn = new SqlConnection(connString);
             conn.Open();
-            MessageBox.Show("Connection Open  !");
+            //MessageBox.Show("Connection Open  !");
+            decimal TotalPrice = 0;
+            for (int i = 0; i < stringArray.Length; i++)
+            {
+                try
+                {
+                    conn.Open();
+                }
+                catch (Exception exc) { }
+                string query = "SELECT BestPrice FROM Inventory WHERE InventoryID = " + stringArray[i];
+                SqlCommand insertCmd = new SqlCommand(query, conn);
+                SqlDataReader reader = insertCmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    TotalPrice = TotalPrice + intQuantities[i] * Convert.ToInt32(reader["BestPrice"]);
+                }
+                conn.Close();
+            }
+            priceResult.Text = "$" + Convert.ToString(TotalPrice);
 
+            //decimal TotalPrice = 0;
+            //for (int i = 0; i < stringArray.Length; i++)
+            //{
+
+            //    try
+            //    {
+            //        conn.Open();
+            //    }
+            //    catch (Exception exc)
+            //    {
+
+            //    }
+            //    string variable = "DECLARE @newPrice decimal(10, 2);";
+            //    SqlCommand com = new SqlCommand(variable);
+            //    string query = "EXEC CalculatePrice " + stringArray[i] + ", " + TotalPrice + ", " + quantityStrings[i] + ", " + "@newPrice" + " OUTPUT";
+            //    SqlCommand insertCmd = new SqlCommand(variable + query, conn);
+            //    SqlDataReader reader = insertCmd.ExecuteReader();
+            //    if (reader.Read())
+            //    {
+            //        TotalPrice = Convert.ToDecimal(reader["@newPrice"]);
+            //    }
+            //    conn.Close();
+            //}
+            //priceResult.Text = "$" + Convert.ToString(TotalPrice);
 
         }
 
@@ -93,7 +145,7 @@ namespace MRPCustomer
 
             SqlConnection conn = new SqlConnection(connString);
             conn.Open();
-            MessageBox.Show("Connection Open  !");
+            //MessageBox.Show("Connection Open  !");
 
             string query = "SELECT * FROM Customer WHERE Name = '" + Convert.ToString(customerNameBox.Text) + "'";
 

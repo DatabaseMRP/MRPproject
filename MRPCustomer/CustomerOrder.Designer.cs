@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -49,6 +48,7 @@
             this.customerResult = new System.Windows.Forms.Label();
             this.productsResult = new System.Windows.Forms.Label();
             this.priceResult = new System.Windows.Forms.Label();
+            this.orderResult = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,7 +59,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
-            this.tableLayoutPanel1.Controls.Add(this.button1, 3, 8);
+            this.tableLayoutPanel1.Controls.Add(this.orderResult, 1, 7);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
@@ -94,15 +94,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 36F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(363, 291);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(145, 46);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "connect to database";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -291,11 +282,20 @@
             // priceResult
             // 
             this.priceResult.AutoSize = true;
-            this.priceResult.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.priceResult.Location = new System.Drawing.Point(243, 203);
+            this.priceResult.Location = new System.Drawing.Point(250, 195);
+            this.priceResult.Margin = new System.Windows.Forms.Padding(10, 15, 3, 0);
             this.priceResult.Name = "priceResult";
-            this.priceResult.Size = new System.Drawing.Size(114, 13);
+            this.priceResult.Size = new System.Drawing.Size(0, 13);
             this.priceResult.TabIndex = 19;
+            // 
+            // orderResult
+            // 
+            this.orderResult.AutoSize = true;
+            this.orderResult.Location = new System.Drawing.Point(130, 267);
+            this.orderResult.Margin = new System.Windows.Forms.Padding(10, 15, 3, 0);
+            this.orderResult.Name = "orderResult";
+            this.orderResult.Size = new System.Drawing.Size(0, 13);
+            this.orderResult.TabIndex = 1;
             // 
             // CustomerOrder
             // 
@@ -314,7 +314,6 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -334,6 +333,7 @@
         private System.Windows.Forms.Label customerResult;
         private System.Windows.Forms.Label productsResult;
         private System.Windows.Forms.Label priceResult;
+        private System.Windows.Forms.Label orderResult;
     }
 }
 
