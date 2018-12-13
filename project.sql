@@ -133,6 +133,7 @@ GO
 /******Object: Table Customer *********/
 CREATE TABLE Customer ( 
 	CustomerID int IDENTITY(1,1) NOT NULL,
+	AccountName varchar(10), 
 	Name varchar(50), 
 	AddressShippingStreet varchar(100), 
 	AddressShippingCity varchar(50),
@@ -141,7 +142,6 @@ CREATE TABLE Customer (
 	AddressBillingCity varchar(50), 
 	AddressBillingState varchar(2), 
 	DefaultCreditCard varchar(19), 
-	CreditReferecenceID int,
 	PRIMARY KEY (CustomerID)
 ) 
 GO 
@@ -300,11 +300,11 @@ VALUES (1,1)
 GO
 */
 
-Insert into Customer(Name, AddressShippingStreet, AddressShippingCity, AddressShippingState,  AddressBillingStreet, 
+Insert into Customer(Name, AccountName, AddressShippingStreet, AddressShippingCity, AddressShippingState,  AddressBillingStreet, 
 AddressBillingCity, AddressBillingState, DefaultCreditCard, CreditReferecenceID )
-VALUES ( 'Kelly', '3435 Burton ST', 'Grand Rapids', 'MI','3435 Bursont ST', 'Grand Rapids', 'MI', '33332664695310', 1) ,
-('Luke', '4675 Tully Street', 'Detroit', 'MI', '4675 Tully Street', 'Detroit' , 'MI', '55553635401028', 2 ), 
-('Judy', '1055 George Avenue', 'Mobile', 'AL','1055 George Avenue', 'Mobile', 'AL', '33332150058339', 3 ) 
+VALUES ( 'Kelly', 'A123456789', '3435 Burton ST', 'Grand Rapids', 'MI','3435 Bursont ST', 'Grand Rapids', 'MI', '33332664695310', 1) ,
+('Luke', 'B123456789','4675 Tully Street', 'Detroit', 'MI', '4675 Tully Street', 'Detroit' , 'MI', '55553635401028', 2 ), 
+('Judy', 'C123456789', '1055 George Avenue', 'Mobile', 'AL','1055 George Avenue', 'Mobile', 'AL', '33332150058339', 3 ) 
 GO 
 /*
 INSERT INTO Invoice 
