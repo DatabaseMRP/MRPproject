@@ -302,10 +302,10 @@ GO
 */
 
 Insert into Customer(Name, AccountName, AddressShippingStreet, AddressShippingCity, AddressShippingState,  AddressBillingStreet, 
-AddressBillingCity, AddressBillingState, DefaultCreditCard, CreditReferecenceID )
-VALUES ( 'Kelly', 'A123456789', '3435 Burton ST', 'Grand Rapids', 'MI','3435 Bursont ST', 'Grand Rapids', 'MI', '33332664695310', 1) ,
-('Luke', 'B123456789','4675 Tully Street', 'Detroit', 'MI', '4675 Tully Street', 'Detroit' , 'MI', '55553635401028', 2 ), 
-('Judy', 'C123456789', '1055 George Avenue', 'Mobile', 'AL','1055 George Avenue', 'Mobile', 'AL', '33332150058339', 3 ) 
+AddressBillingCity, AddressBillingState, DefaultCreditCard)
+VALUES ( 'Kelly', 'A123456789', '3435 Burton ST', 'Grand Rapids', 'MI','3435 Bursont ST', 'Grand Rapids', 'MI', '33332664695310') ,
+('Luke', 'B123456789','4675 Tully Street', 'Detroit', 'MI', '4675 Tully Street', 'Detroit' , 'MI', '55553635401028' ), 
+('Judy', 'C123456789', '1055 George Avenue', 'Mobile', 'AL','1055 George Avenue', 'Mobile', 'AL', '33332150058339') 
 GO 
 /*
 INSERT INTO Invoice 
