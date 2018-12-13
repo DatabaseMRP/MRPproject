@@ -1,50 +1,53 @@
+USE projectDB;
+GO
+
 ----------- 1. create order
 
 IF OBJECT_ID('NewCustomer', 'P') IS NOT NULL
 DROP PROCEDURE NewCustomer; 
 GO 
 
-CREATE PROCEDURE NewCustomer
-	@name varchar(50), 
-	@addressShippingStreet varchar(100), 
-	@addressShippingCity varchar(50),
-	@addressShippingState varchar(2),
-	@addressBillingStreet varchar(100),
-	@addressBillingCity varchar(50), 
-	@addressBillingState varchar(2), 
-	@defaultCreditCard varchar(19), 
-	@creditReferecenceID int
-AS
-BEGIN
-INSERT INTO Customer(Name, AddressShippingStreet, AddressShippingCity, AddressShippingState,  AddressBillingStreet, 
-AddressBillingCity, AddressBillingState, DefaultCreditCard, CreditReferecenceID )
-Values (@name, @addressShippingStreet,
-@addressShippingCity,
-@addressShippingState, 
-@addressBillingStreet, 
-@addressBillingCity, 
-@addressBillingState, 
-@defaultCreditCard,
-@creditReferecenceID)
-END
+--CREATE PROCEDURE NewCustomer
+--	@name varchar(50), 
+--	@addressShippingStreet varchar(100), 
+--	@addressShippingCity varchar(50),
+--	@addressShippingState varchar(2),
+--	@addressBillingStreet varchar(100),
+--	@addressBillingCity varchar(50), 
+--	@addressBillingState varchar(2), 
+--	@defaultCreditCard varchar(19), 
+--	@creditReferecenceID int
+--AS
+--BEGIN
+--INSERT INTO Customer(Name, AddressShippingStreet, AddressShippingCity, AddressShippingState,  AddressBillingStreet, 
+--AddressBillingCity, AddressBillingState, DefaultCreditCard )
+--Values (@name, @addressShippingStreet,
+--@addressShippingCity,
+--@addressShippingState, 
+--@addressBillingStreet, 
+--@addressBillingCity, 
+--@addressBillingState, 
+--@defaultCreditCard,
+--@creditReferecenceID)
+--END
 
-GO
+--GO
 
-SELECT * FROM customer;
+--SELECT * FROM customer;
 
 
---testing exec
-EXEC dbo.NewCustomer 
-@name = 'super luigi',
-@addressShippingStreet = 'burton',
-@addressShippingCity = 'gr',
-@addressShippingState = ' ca',
-@addressBillingStreet = 'burton',
-@addressBillingCity ='sf',
-@addressBillingState ='df',
-@defaultCreditCard = 213452,
-@creditReferecenceID =3
-GO
+----testing exec
+--EXEC dbo.NewCustomer 
+--@name = 'super luigi',
+--@addressShippingStreet = 'burton',
+--@addressShippingCity = 'gr',
+--@addressShippingState = ' ca',
+--@addressBillingStreet = 'burton',
+--@addressBillingCity ='sf',
+--@addressBillingState ='df',
+--@defaultCreditCard = 213452,
+--@creditReferecenceID =3
+--GO
 
 
 
@@ -57,7 +60,7 @@ GO
 CREATE PROCEDURE NewOrder
 	@customerID int,	
 	@oneShipment BIT, 
-	@orderTotalPrice DECIMAL(4,2),
+	@orderTotalPrice Decimal (10,2),
 	@products varchar(10),
 	@quantities varchar(10)
 AS
