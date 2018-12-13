@@ -23,3 +23,5 @@ DECLARE @Total decimal(10,2);
 exec CalculatePrice 2, 0, 3, @Total OUTPUT;
 select @Total;
 */
+
+CREATE NONCLUSTERED INDEX price ON Inventory(BestPrice);
