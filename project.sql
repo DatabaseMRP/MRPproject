@@ -1,3 +1,6 @@
+/*
+ *	CREATED BY: LUKE STEFFEN, KELLY OH, JUDY KWON
+*/
 
 USE master
 go
@@ -10,9 +13,11 @@ GO
 
 CREATE DATABASE projectDB
 GO
-W
+
 USE projectDB
 GO
+
+
 
 IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES
 			WHERE TABLE_NAME = N'Inventory')
@@ -65,6 +70,9 @@ IF OBJECT_ID('dbo.HILODriver') IS NOT NULL
 
 IF OBJECT_ID('dbo.BillOfMaterial') IS NOT NULL
 	DROP TABLE dbo.BillOfMaterial
+
+IF OBJECT_ID('dbo.Balance') IS NOT NULL
+	DROP VIEW dbo.Balance
 
 /****** Object: Table Inventory ***********/
 CREATE TABLE Inventory (
@@ -142,7 +150,7 @@ CREATE TABLE Customer (
 	AddressBillingStreet varchar(100),
 	AddressBillingCity varchar(50), 
 	AddressBillingState varchar(2), 
-	DefaultCreditCard varchar(19), 
+	DefaultCreditCard varchar(19) DEFAULT NULL, 
 	PRIMARY KEY (CustomerID)
 ) 
 GO 
@@ -192,6 +200,7 @@ CREATE TABLE CreditReference (
 	FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID)
 )
 GO 
+
 
 /*******************Object: Table Resource ***********************/
 CREATE TABLE Resource (
@@ -322,11 +331,12 @@ VALUES ('AL', 4.00), ('AK', 0.00), ('AZ', 5.60),
 GO 
 
 
-INSERT INTO CreditReference (CustomerID, CurrentBalance, CreditLimit)
-VALUES (1,  100.00, 500.00),
-(2, 300.00, 250.00), 
-(3, 300.00, 700.00)
+INSERT INTO CreditReference (CustomerID, CreditorName, AccountNumber, CurrentBalance, CreditLimit)
+VALUES (1, 'Trusty Uncle', 12345678, 100.00, 700.00),
+(1, 'Trusty Dad', 12451245, 300.00, 700.00), 
+(1, 'Trusty Mom', 14562378, 300.00, 700.00)
 GO
+
 /***************************** INDEX quantityStatus, vendor, invoice, and purchase order TABLE *****************************/
 CREATE INDEX Inventory_Index 
 ON Inventory ( BestPrice);
@@ -339,3 +349,20 @@ ON Invoice(CustomerID, InvoiceDateTime) ;
 
 CREATE INDEX PurchaseOrder_Index
 ON PurchaseOrder(PurchaseOrderLineID, VendorID);
+GO
+
+
+
+
+/***************************** VIEW customer, credit reference TABLE *****************************/
+CREATE VIEW [Balance] AS
+SELECT 
+c.CustomerID,
+MIN(CurrentBalance) as CurrentBalance,
+MAX(CreditLimit) as CreditLimit
+from CreditReference r join Customer c on r.CustomerID = c.CustomerID
+GROUP BY c.CustomerID;
+
+GO
+
+
