@@ -1,4 +1,10 @@
-create procedure sp_NewCustomer
+----------- 1. create order
+
+IF OBJECT_ID('NewCustomer', 'P') IS NOT NULL
+DROP PROCEDURE NewCustomer; 
+GO 
+
+create procedure NewCustomer
 	@name varchar(50), 
 	@addressShippingStreet varchar(100), 
 	@addressShippingCity varchar(50),
@@ -28,7 +34,7 @@ select * from customer;
 
 
 --testing exec
-EXEC dbo.sp_NewCustomer 
+EXEC dbo.NewCustomer 
 @name = 'super luigi',
 @addressShippingStreet = 'burton',
 @addressShippingCity = 'gr',
@@ -42,7 +48,7 @@ go
 
 
 
------- create order
+----------- 2. create order
 
 IF OBJECT_ID('NewOrder', 'P') IS NOT NULL
 DROP PROCEDURE NewOrder; 
@@ -52,60 +58,23 @@ create procedure NewOrder
 	@customerID int,	
 	@oneShipment BIT, 
 	@orderTotalPrice DECIMAL(4,2)
-	--@estimatedShippingDate date
-	--@invoiceDateTime date
 as
 begin
 
 declare @currentDate varchar(10)
 declare @shippingdate varchar(10)
-set @currentDate = (
-SELECT CONVERT (date, SYSDATETIME())  
-)
+set @currentDate = ( SELECT CONVERT (date, SYSDATETIME()) )
+set @shippingdate = ( SELECT DATEADD(day, 5, (SELECT CONVERT (date, SYSDATETIME()))))
 
-set @shippingdate = (
-SELECT CONVERT (date, SYSDATETIME())  + 5
-)
-
-select @currentDate
-
-SELECT DATEADD(day, 1, ) AS DateAdd;
-
-
-declare @
-
-Insert into Invoice( CustomerID, OneShipment, OrderTotalPrice, EstimatedShippingDate)
-Values (@customerID, @oneShipment, @orderTotalPrice, @estimatedShippingDate)
+Insert into Invoice( CustomerID, OneShipment, OrderTotalPrice, EstimatedShippingDate, InvoiceDateTime)
+Values (@customerID, @oneShipment, @orderTotalPrice, @shippingdate, @currentDate)
 
 end
 go
 
 select * from Invoice;
 
-select datetime(3)
-select sysdatetime()
-
 --testing exec
-EXEC dbo.sp_NewOrder
-@customerID = '1', @oneShipment ='', @orderTotalPrice ='', @estimatedShippingDate ='2/2/3000'
+EXEC dbo.NewOrder
+@customerID = '1', @oneShipment ='', @orderTotalPrice ='12.56'
 go
-
-
-
-CustomerID int,	
-OneShipment BIT, 
-OrderTotalPrice DECIMAL(4,2),
-EstimatedShippingDate date,
-InvoiceDateTime date,
-
-CustomerID 
-OneShipment 
-OrderTotalPrice 
-EstimatedShippingDate 
-InvoiceDateTime 
-
-@customerID 
-@oneShipment 
-@orderTotalPrice 
-@estimatedShippingDate 
-@invoiceDateTime 
